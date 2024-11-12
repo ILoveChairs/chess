@@ -92,13 +92,13 @@ with it's move.
 Here I will store the roadmap that I will try to follow.
 Some parts may be added or updated while in production.
 
-0. ### Initialization
+0. Initialization
 
     1. Create README. &check;
 
     2. Create Dart Frog Project. &check;
 
-1. ### Test driven development
+1. Test driven development
 
     1. Write unit tests for chess logic.
 
@@ -108,7 +108,7 @@ Some parts may be added or updated while in production.
 
     4. Write integration tests for the whole application.
 
-2. ### Chess logic 
+2. Chess logic 
 
     1. Create a class that represents a chess board.
 
@@ -129,13 +129,13 @@ Some parts may be added or updated while in production.
 
     7. More...
 
-3. ### Chess CPU
+3. Chess CPU
 
     1. Create a CPU interface and CPUEasy class.
 
     2. More...
 
-4. ### API
+4. API
 
     1. Expose index to recieve post requests.
 
@@ -147,13 +147,13 @@ Some parts may be added or updated while in production.
 
     5. Handle possible errors with logic.
 
-5. ### Deployment to Globe
+5. Deployment to Globe
 
     1. Deploy to Globe using personal account.
 
     2. Test that deployment was successful using postman.
 
-6. ### Connection with frontend
+6. Connection with frontend
 
     1. Complete the chess frontend in https://matiasdavezac.com.
 
