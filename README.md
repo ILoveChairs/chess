@@ -1,6 +1,16 @@
 # Simple Chess Backend
 
+[![style: very good analysis][very_good_analysis_badge]][very_good_analysis_link]
+[![License: MIT][license_badge]][license_link]
+[![Powered by Dart Frog](https://img.shields.io/endpoint?url=https://tinyurl.com/dartfrog-badge)](https://dartfrog.vgv.dev)
+
 Made by Matias Davezac
+
+[license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
+[license_link]: https://opensource.org/licenses/MIT
+[very_good_analysis_badge]: https://img.shields.io/badge/style-very_good_analysis-B22C89.svg
+[very_good_analysis_link]: https://pub.dev/packages/very_good_analysis
+
 
 ## What do I want with this project?
 
@@ -39,7 +49,7 @@ to that specific data type.
 
 As you might now a chess board is basically 8x8 bidimentional array.
 However, I needed to choose whether to have the second array as a
-row or column. As traditionally the column is annotated before the file I
+row or column. As traditionally the column is annotated before the row I
 decided to have the second array as a column.
 
 Each element of the second array should contain either null or a piece.
@@ -86,7 +96,7 @@ Some parts may be added or updated while in production.
 
     1. Create README. &check;
 
-    2. Create Dart Frog Project.
+    2. Create Dart Frog Project. &check;
 
 1. ### Test driven development
 
