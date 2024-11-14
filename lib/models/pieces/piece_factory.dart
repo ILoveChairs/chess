@@ -21,15 +21,15 @@ class PieceFactory {
       case King:
         return King(square: square, color: color);
       case Queen:
-        return King(square: square, color: color);
+        return Queen(square: square, color: color);
       case Rook:
-        return King(square: square, color: color);
+        return Rook(square: square, color: color);
       case Knight:
-        return King(square: square, color: color);
+        return Knight(square: square, color: color);
       case Bishop:
-        return King(square: square, color: color);
+        return Bishop(square: square, color: color);
       case Pawn:
-        return King(square: square, color: color);
+        return Pawn(square: square, color: color);
       default:
         throw ArgumentError(
           'Piece factory type argument not recognized',
