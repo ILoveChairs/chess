@@ -36,16 +36,13 @@ class Square {
 class Move {
   /// A move is when a piece moves from A to B.
   const Move({
-    required this.startingSquare,
     required this.destinationSquare,
     required this.piece,
   });
 
-  /// The square the piece is currently at.
-  final Square startingSquare;
   /// The square the piece wants to end at.
   final Square destinationSquare;
-  /// The piece in question.
+  /// The piece in question. Also has starting square.
   final Piece piece;
 }
 

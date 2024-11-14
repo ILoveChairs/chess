@@ -13,7 +13,7 @@ void testBoardInstancing() {
     )
     .checkIfBoardIsValid();
   },
-    msg: 'testBoardInstancing-1 Valid test case threw error',
+    name: 'testBoardInstancing-1',
   );
 
   invalidTest<AssertionError>(() {
@@ -25,7 +25,7 @@ void testBoardInstancing() {
     )
     .checkIfBoardIsValid();
   },
-    msg: 'testBoardInstancing-2 Invalid test case did not threw expected error',
+    name: 'testBoardInstancing-2',
   );
 
   invalidTest<AssertionError>(() {
@@ -37,7 +37,7 @@ void testBoardInstancing() {
     )
     .checkIfBoardIsValid();
   },
-    msg: 'testBoardInstancing-3 Invalid test case did not threw expected error',
+    name: 'testBoardInstancing-3',
   );
 
   invalidTest<AssertionError>(() {
@@ -51,7 +51,7 @@ void testBoardInstancing() {
     )
     .checkIfBoardIsValid();
   },
-    msg: 'testBoardInstancing-4 Invalid test case did not threw expected error',
+    name: 'testBoardInstancing-4',
   );
 
   invalidTest<AssertionError>(() {
@@ -65,7 +65,7 @@ void testBoardInstancing() {
     )
     .checkIfBoardIsValid();
   },
-    msg: 'testBoardInstancing-5 Invalid test case did not threw expected error',
+    name: 'testBoardInstancing-5',
   );
 }
 

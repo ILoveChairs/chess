@@ -51,4 +51,11 @@ class Board implements BoardInterface {
     throw UnimplementedError();
   }
 
+  /// 
+  Board copyWith(List<Piece> newPieces) {
+    return Board(
+      pieces: [...pieces, ...newPieces],
+      dimentions: dimentions,
+    );
+  }
 }

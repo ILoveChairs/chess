@@ -98,13 +98,15 @@ Some parts may be added or updated while in production.
 
     2. Create Dart Frog Project. &check;
 
+    3. Create interfaces. &check;
+
 1. Test driven development
 
-    1. Write unit tests for chess logic.
+    1. Write unit tests for chess logic. &check;
 
-    2. Write unit tests for chess CPU.
+    2. Write unit tests for chess CPU. &check;
 
-    3. Write unit tests for API.
+    3. Write unit tests for API. &check;
 
     4. Write integration tests for the whole application.
 

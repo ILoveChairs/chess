@@ -17,23 +17,23 @@ class TestFailure implements Exception {
 
 
 /// Throws TestFailure if an error is thrown.
-void validTest(void Function() f, {String? msg}) {
+void validTest(void Function() f, {String? name}) {
   try {
     f();
   } catch (e) {
-    throw TestFailure(msg);
+    throw TestFailure('$name: Valid test case threw "$e" error');
   }
 }
 
 
 /// Throws TestFailure if the error is not thrown.
-void invalidTest<E extends Error>(void Function() f, {String? msg}) {
+void invalidTest<E extends Error>(void Function() f, {String? name}) {
   try {
     f();
-    throw TestFailure(msg);
+    throw TestFailure('$name: Invalid test case did not threw expected error');
   } on E {
     // Do nothing
   } catch (e) {
-    throw TestFailure(msg);
+    throw TestFailure('$name: Uncatched "$e" error');
   }
 }
