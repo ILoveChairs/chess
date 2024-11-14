@@ -2,14 +2,12 @@
 /// The dimentions for a board. Attributes should be > 0.
 class BoardDimentions {
   /// The dimentions for a board. Attributes should be > 0.
-  const BoardDimentions(
-    {
-      required this.width,
-      required this.length,
-    }
-  ):
-  assert(width > 0, 'Width of board <= 0'),
-  assert(length > 0, 'Length of board <= 0');
+  const BoardDimentions({
+    required this.width,
+    required this.length,
+  }):
+    assert(width > 0, 'Width of board <= 0'),
+    assert(length > 0, 'Length of board <= 0');
 
   /// Width of the board. Usually 8.
   final int width;
@@ -21,12 +19,10 @@ class BoardDimentions {
 /// A square is a position (hopefully) inside the board.
 class Square {
   /// A square is a position (hopefully) inside the board.
-  const Square(
-    {
-      required this.x,
-      required this.y,
-    }
-  );
+  const Square({
+    required this.x,
+    required this.y,
+  });
 
   /// Position in the x axis of the square, normally a letter but simplified
   /// to an int.
@@ -39,13 +35,11 @@ class Square {
 /// A move is when a piece moves from A to B.
 class Move {
   /// A move is when a piece moves from A to B.
-  const Move(
-    {
-      required this.startingSquare,
-      required this.destinationSquare,
-      required this.piece,
-    }
-  );
+  const Move({
+    required this.startingSquare,
+    required this.destinationSquare,
+    required this.piece,
+  });
 
   /// The square the piece is currently at.
   final Square startingSquare;

@@ -4,14 +4,17 @@ import 'package:chess/models/interfaces.dart';
 
 /// 
 class Board implements BoardInterface {
-  @override
-  void checkIfBoardIsValid() {
-    // TODO: implement checkIfBoardIsValid
-  }
+  /// 
+  const Board({
+    required this.pieces,
+    required this.dimentions,
+  });
 
   @override
-  // TODO: implement dimentions
-  BoardDimentions get dimentions => throw UnimplementedError();
+  final List<Piece?> pieces;
+
+  @override
+  final BoardDimentions dimentions;
 
   @override
   List<Move> getAllPossibleMoves(PieceColor color) {
@@ -23,6 +26,11 @@ class Board implements BoardInterface {
   Piece? getSquareContent(Square square) {
     // TODO: implement getSquareContent
     throw UnimplementedError();
+  }
+
+  @override
+  void checkIfBoardIsValid() {
+    // TODO: implement checkIfBoardIsValid
   }
 
   @override
@@ -43,7 +51,4 @@ class Board implements BoardInterface {
     throw UnimplementedError();
   }
 
-  @override
-  // TODO: implement pieces
-  List<Piece?> get pieces => throw UnimplementedError();
 }

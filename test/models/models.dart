@@ -1,4 +1,5 @@
-export 'board_test.dart' show boardInstancingTest;
-export 'cpu_test.dart';
-export 'piece_test.dart';
-export 'piece_translator_test.dart';
+export 'failure.dart';
+export 'test_board.dart' show testBoard;
+export 'test_cpu.dart' show testCPU;
+export 'test_piece_translator.dart' show testPieceTranslator;
+export 'test_pieces.dart' show testPieces;

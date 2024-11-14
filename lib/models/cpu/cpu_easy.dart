@@ -3,19 +3,23 @@ import 'package:chess/models/interfaces.dart';
 
 /// 
 class CpuEasy implements CPU {
+  /// 
+  const CpuEasy({
+    required this.board,
+    required this.color,
+  });
+
   @override
-  // TODO: implement board
-  BoardInterface get board => throw UnimplementedError();
+  final BoardInterface board;
+
+  @override
+  final PieceColor color;
 
   @override
   BoardInterface calculateTurn() {
     // TODO: implement calculateTurn
     throw UnimplementedError();
   }
-
-  @override
-  // TODO: implement color
-  PieceColor get color => throw UnimplementedError();
 
   @override
   List<Move> getBestMoves(BoardInterface board) {
