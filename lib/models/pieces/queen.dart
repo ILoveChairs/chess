@@ -1,5 +1,7 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/pieces/bishop.dart';
+import 'package:chess/models/pieces/rook.dart';
 
 
 /// 
@@ -22,7 +24,9 @@ class Queen implements Piece {
 
   @override
   List<Move> calculatePossibleMoves(BoardInterface board) {
-    // TODO: implement calculatePossibleMoves
-    throw UnimplementedError();
+    final moves = <Move>[];
+    addRookMoves(moves: moves, board: board, piece: this);
+    addBishopMoves(moves: moves, board: board, piece: this);
+    return moves;
   }
 }
