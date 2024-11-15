@@ -11,7 +11,7 @@ void testCPUEasy() {
           King(square: Square(x: 5, y: 1), color: PieceColor.white),
           King(square: Square(x: 5, y: 8), color: PieceColor.black),
         ],
-        dimentions: BoardDimentions(width: 8, length: 8),
+        dimentions: BoardDimentions(width: 8, height: 8),
       ),
       color: PieceColor.black,
     );

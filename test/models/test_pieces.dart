@@ -10,7 +10,7 @@ const testBoard = Board(
   ],
   dimentions: BoardDimentions(
     width: 8,
-    length: 8,
+    height: 8,
   ),
 );
 
@@ -429,7 +429,7 @@ void kingTest() {
         king,
         King(square: Square(x: 8, y: 8), color: PieceColor.black),
       ],
-      dimentions: BoardDimentions(width: 8, length: 8),
+      dimentions: BoardDimentions(width: 8, height: 8),
     );
 
     final moves = king.calculatePossibleMoves(board);
@@ -465,7 +465,7 @@ void kingTest() {
         Pawn(square: Square(x: 3, y: 4), color: PieceColor.black),
         Knight(square: Square(x: 6, y: 8), color: PieceColor.black),
       ],
-      dimentions: BoardDimentions(width: 8, length: 8),
+      dimentions: BoardDimentions(width: 8, height: 8),
     );
 
     final moves = king.calculatePossibleMoves(board);

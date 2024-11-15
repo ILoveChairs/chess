@@ -51,7 +51,9 @@ class Board implements BoardInterface {
 
   @override
   void checkIfBoardIsValid() {
-    assert(pieces.length < 2, "Board can't be empty");
+    // Emptiness
+    assert(pieces.length >= 2, "Board can't be empty");
+    // Kings
     final kings = <King>[];
     for (final piece in pieces) {
       if (piece is King) {
@@ -70,6 +72,14 @@ class Board implements BoardInterface {
         (king) => king.color == PieceColor.white,
       ),
       'White king not found',
+    );
+    // Out of table
+    assert(
+      !pieces.any((piece) =>
+        piece.square.x < 1 || piece.square.x > dimentions.width ||
+        piece.square.y < 1 || piece.square.y > dimentions.height,
+      ),
+      'A piece is out of the board',
     );
   }
 

@@ -4,15 +4,15 @@ class BoardDimentions {
   /// The dimentions for a board. Attributes should be > 0.
   const BoardDimentions({
     required this.width,
-    required this.length,
+    required this.height,
   }):
     assert(width > 0, 'Width of board <= 0'),
-    assert(length > 0, 'Length of board <= 0');
+    assert(height > 0, 'Length of board <= 0');
 
   /// Width of the board. Usually 8.
   final int width;
-  /// Length of the board. Usually 8.
-  final int length;
+  /// Height of the board. Usually 8.
+  final int height;
 }
 
 
