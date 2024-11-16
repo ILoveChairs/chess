@@ -107,6 +107,9 @@ abstract interface class BoardInterface {
   /// else return a piece.
   Piece? getSquareContent(Square square);
 
+  /// Retuns whether a square is inside the board.
+  bool isSquareInside(Square square);
+
   /// Gets all the moves possible for a specific color.
   List<Move> getAllPossibleMoves(PieceColor color);
 

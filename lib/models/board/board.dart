@@ -40,7 +40,17 @@ class Board implements BoardInterface {
   }
 
   @override
+  bool isSquareInside(Square square) {
+    return
+      square.x <= dimentions.width && square.x >= 1 &&
+      square.y <= dimentions.height && square.y >= 1;
+  }
+
+  @override
   Piece? getSquareContent(Square square) {
+    if (isSquareInside(square)) {
+      return null;
+    }
     for (final piece in pieces) {
       if (piece.square == square) {
         return piece;
