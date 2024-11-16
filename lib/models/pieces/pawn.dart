@@ -70,6 +70,11 @@ class Pawn implements Piece {
     }
     return moves;
   }
+
+  @override
+  String toString() {
+    return 'P($square, $color)';
+  }
 }
 
 

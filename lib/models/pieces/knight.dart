@@ -49,4 +49,9 @@ class Knight implements Piece {
     }
     return moves;
   }
+
+  @override
+  String toString() {
+    return 'N($square, $color)';
+  }
 }

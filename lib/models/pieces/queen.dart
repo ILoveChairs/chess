@@ -29,4 +29,9 @@ class Queen implements Piece {
     addBishopMoves(moves: moves, board: board, piece: this);
     return moves;
   }
+
+  @override
+  String toString() {
+    return 'Q($square, $color)';
+  }
 }

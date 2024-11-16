@@ -45,4 +45,9 @@ class King implements Piece {
     }
     return moves;
   }
+
+  @override
+  String toString() {
+    return 'K($square, $color)';
+  }
 }

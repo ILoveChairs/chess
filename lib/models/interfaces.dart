@@ -13,6 +13,11 @@ class BoardDimentions {
   final int width;
   /// Height of the board. Usually 8.
   final int height;
+
+  @override
+  String toString() {
+    return 'Dim(width:$width, height:$height)';
+  }
 }
 
 
@@ -29,6 +34,11 @@ class Square {
   final int x;
   /// Position in the x axis of the square.
   final int y;
+
+  @override
+  String toString() {
+    return 'Sqr(x:$x, y:$y)';
+  }
 }
 
 
@@ -44,6 +54,11 @@ class Move {
   final Square destinationSquare;
   /// The piece in question. Also has starting square.
   final Piece piece;
+
+  @override
+  String toString() {
+    return '$piece$destinationSquare';
+  }
 }
 
 

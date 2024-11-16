@@ -27,6 +27,11 @@ class Rook implements Piece {
     addRookMoves(moves: moves, board: board, piece: this);
     return moves;
   }
+
+  @override
+  String toString() {
+    return 'R($square, $color)';
+  }
 }
 
 

@@ -1,5 +1,6 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/pieces/move_sorter.dart';
 import 'package:chess/models/pieces/stoppable_move_setter.dart';
 
 
@@ -25,7 +26,12 @@ class Bishop implements Piece {
   List<Move> calculatePossibleMoves(BoardInterface board) {
     final moves = <Move>[];
     addBishopMoves(moves: moves, board: board, piece: this);
-    return moves;
+    return moves..sort(moveSorter);
+  }
+
+  @override
+  String toString() {
+    return 'B($square, $color)';
   }
 }
 
