@@ -1,10 +1,11 @@
 
 import 'package:chess/models/interfaces.dart';
 import 'package:chess/models/pieces/move_sorter.dart';
+import 'package:equatable/equatable.dart';
 
 
 /// 
-class Pawn implements Piece {
+class Pawn extends Equatable implements Piece {
   /// 
   const Pawn({
     required this.square,
@@ -92,9 +93,6 @@ class Pawn implements Piece {
 
   @override
   List<Object?> get props => [color, square];
-
-  @override
-  bool? get stringify => false;
 }
 
 

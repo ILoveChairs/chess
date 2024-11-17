@@ -22,7 +22,7 @@ class TraditionalTranslator implements PieceTranslator {
       case Bishop:
         return piece.color == PieceColor.white ? 'B' : 'b';
       case Knight:
-        return piece.color == PieceColor.white ? 'K' : 'k';
+        return piece.color == PieceColor.white ? 'N' : 'n';
       case Pawn:
         return piece.color == PieceColor.white ? 'P' : 'p';
       default:

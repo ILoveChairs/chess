@@ -2,10 +2,11 @@
 import 'package:chess/models/interfaces.dart';
 import 'package:chess/models/pieces/move_sorter.dart';
 import 'package:chess/models/pieces/stoppable_move_setter.dart';
+import 'package:equatable/equatable.dart';
 
 
 /// 
-class Bishop implements Piece {
+class Bishop extends Equatable implements Piece {
   /// 
   const Bishop({
     required this.square,
@@ -36,9 +37,6 @@ class Bishop implements Piece {
 
   @override
   List<Object?> get props => [color, square];
-
-  @override
-  bool? get stringify => false;
 }
 
 
