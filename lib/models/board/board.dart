@@ -127,7 +127,7 @@ class Board implements BoardInterface {
     );
   }
 
-  /// 
+  @override
   Board applyMove(Move move) {
     final newPieces = List<Piece>.from(pieces);
     final destinationPiece = getSquareContent(move.destinationSquare);

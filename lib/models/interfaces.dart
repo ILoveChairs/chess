@@ -150,6 +150,9 @@ abstract interface class BoardInterface extends Equatable {
     bool isKing = false,
   });
 
+  /// Applies a move and returns a new board.
+  BoardInterface applyMove(Move move);
+
   /// Gets all the moves possible for a specific color.
   List<Move> getAllPossibleMoves(PieceColor color);
 
@@ -194,7 +197,7 @@ abstract interface class CPU extends Equatable {
   /// Internal-ish method that gathers the best moves up to 5.
   /// 
   /// If there is not 5 equally good moves, it will return less.
-  List<Move> getBestMoves(BoardInterface board);
+  List<Move> getBestMoves();
 
   /// Calculates which move the CPU wants to make and returns a board with the
   /// move already done.
