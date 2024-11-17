@@ -27,4 +27,10 @@ class CpuEasy implements CPU {
     throw UnimplementedError();
   }
 
+
+  @override
+  List<Object?> get props => [color, board];
+
+  @override
+  bool? get stringify => false;
 }

@@ -1,6 +1,7 @@
 
 import 'package:chess/models/interfaces.dart';
 import 'package:chess/models/pieces/bishop.dart';
+import 'package:chess/models/pieces/move_sorter.dart';
 import 'package:chess/models/pieces/rook.dart';
 
 
@@ -27,11 +28,17 @@ class Queen implements Piece {
     final moves = <Move>[];
     addRookMoves(moves: moves, board: board, piece: this);
     addBishopMoves(moves: moves, board: board, piece: this);
-    return moves;
+    return moves..sort(moveSorter);
   }
 
   @override
   String toString() {
     return 'Q($square, $color)';
   }
+
+  @override
+  List<Object?> get props => [color, square];
+
+  @override
+  bool? get stringify => false;
 }

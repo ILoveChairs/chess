@@ -1,5 +1,6 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/pieces/move_sorter.dart';
 import 'package:chess/models/pieces/stoppable_move_setter.dart';
 
 
@@ -25,13 +26,19 @@ class Rook implements Piece {
   List<Move> calculatePossibleMoves(BoardInterface board) {
     final moves = <Move>[];
     addRookMoves(moves: moves, board: board, piece: this);
-    return moves;
+    return moves..sort(moveSorter);
   }
 
   @override
   String toString() {
     return 'R($square, $color)';
   }
+  
+  @override
+  List<Object?> get props => [color, square];
+
+  @override
+  bool? get stringify => false;
 }
 
 

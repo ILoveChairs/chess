@@ -1,5 +1,6 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/piece_translator/piece_translator.dart';
 import 'package:chess/models/pieces/pieces.dart';
 
 
@@ -47,8 +48,41 @@ class Board implements BoardInterface {
   }
 
   @override
+  bool isSquareAttacked({
+    required Square square,
+    required PieceColor color,
+    bool isKing = false,
+  }) {
+    for (final piece in pieces) {
+      if (piece.color != color) { continue; }
+      if (piece is King && isKing) {
+        if (
+          piece.allSquaresReachable(this)
+            .map((sq) => Move(destinationSquare: sq, piece: piece))
+            .any((move) => move.destinationSquare == square)
+        ) {
+          return true;
+        }
+      } else if (piece is Pawn) {
+        if (
+          piece.getDiagoinals()
+            .map((sq) => Move(destinationSquare: sq, piece: piece))
+            .any((move) => move.destinationSquare == square)
+        ) {
+          return true;
+        }
+      } else if (piece.calculatePossibleMoves(this).any(
+        (move) => move.destinationSquare == square,
+      )) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @override
   Piece? getSquareContent(Square square) {
-    if (isSquareInside(square)) {
+    if (!isSquareInside(square)) {
       return null;
     }
     for (final piece in pieces) {
@@ -114,9 +148,7 @@ class Board implements BoardInterface {
   @override
   bool isChecked(PieceColor color) {
     final king = getKingOfColor(color);
-    final enemyColor = color == PieceColor.black ?
-      PieceColor.black: PieceColor.white;
-    final enemyMoves = getAllPossibleMoves(enemyColor);
+    final enemyMoves = getAllPossibleMoves(getOppositeColor(color));
     return enemyMoves.any(
       (move) => move.destinationSquare == king.square,
     );
@@ -155,4 +187,33 @@ class Board implements BoardInterface {
       dimentions: dimentions,
     );
   }
+
+  @override
+  String toString() {
+    final output = <List<String>>[];
+
+    // populate with ' '
+    for (var i = 0; i < dimentions.width; i++) {
+      output.add([]);
+      for (var j = 0; j < dimentions.height; j++) {
+        output[i].add(' ');
+      }
+    }
+
+    final translator = TraditionalTranslator();
+
+    // populate squares with pieces
+    for (final piece in pieces) {
+      output[piece.square.x + 1][piece.square.y + 1] = 
+        translator.pieceToString(piece);
+    }
+
+    return output.toString();
+  }
+
+  @override
+  List<Object?> get props => [dimentions, pieces];
+
+  @override
+  bool? get stringify => false;
 }

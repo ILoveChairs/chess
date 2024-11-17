@@ -33,6 +33,12 @@ class Bishop implements Piece {
   String toString() {
     return 'B($square, $color)';
   }
+
+  @override
+  List<Object?> get props => [color, square];
+
+  @override
+  bool? get stringify => false;
 }
 
 

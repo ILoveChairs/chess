@@ -1,5 +1,6 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/pieces/move_sorter.dart';
 
 
 /// 
@@ -32,8 +33,10 @@ class Pawn implements Piece {
         moves.add(Move(destinationSquare: square1, piece: this));
         final square2 = Square(x: square.x, y: square.y + 2);
         final square2Content = board.getSquareContent(square2);
-        if (square2Content == null || square2Content.color != color) {
-          moves.add(Move(destinationSquare: square2, piece: this));
+        if (square.y == 2) {
+          if (square2Content == null) {
+            moves.add(Move(destinationSquare: square2, piece: this));
+          }
         }
       } else if (square1Content.color != color) {
         moves.add(Move(destinationSquare: square1, piece: this));
@@ -54,8 +57,10 @@ class Pawn implements Piece {
         moves.add(Move(destinationSquare: square1, piece: this));
         final square2 = Square(x: square.x, y: square.y - 2);
         final square2Content = board.getSquareContent(square2);
-        if (square2Content == null || square2Content.color != color) {
-          moves.add(Move(destinationSquare: square2, piece: this));
+        if (square.y == board.dimentions.height - 1) {
+          if (square2Content == null) {
+            moves.add(Move(destinationSquare: square2, piece: this));
+          }
         }
       } else if (square1Content.color != color) {
         moves.add(Move(destinationSquare: square1, piece: this));
@@ -68,13 +73,28 @@ class Pawn implements Piece {
         board: board,
       );
     }
-    return moves;
+    return moves..sort(moveSorter);
+  }
+
+  /// 
+  List<Square> getDiagoinals() {
+    final yMod = color == PieceColor.white ? 1 : -1;
+    return [
+      Square(x: square.x - 1, y: square.y + yMod),
+      Square(x: square.x + 1, y: square.y + yMod),
+    ];
   }
 
   @override
   String toString() {
     return 'P($square, $color)';
   }
+
+  @override
+  List<Object?> get props => [color, square];
+
+  @override
+  bool? get stringify => false;
 }
 
 

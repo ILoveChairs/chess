@@ -1,5 +1,6 @@
 
 import 'package:chess/models/interfaces.dart';
+import 'package:chess/models/pieces/move_sorter.dart';
 import 'package:chess/models/pieces/simple_move_setter.dart';
 
 
@@ -21,10 +22,10 @@ class King implements Piece {
   @override
   final int value;
 
-  @override
-  List<Move> calculatePossibleMoves(BoardInterface board) {
-    final moves = <Move>[];
-    final possibleSquares = [
+  /// All squares that the king can attack.
+  /// Does not check if the square is inside the board.
+  List<Square> allSquaresReachable(BoardInterface board) {
+    return [
       Square(x: square.x + 1, y: square.y + 1),
       Square(x: square.x + 1, y: square.y),
       Square(x: square.x + 1, y: square.y - 1),
@@ -34,8 +35,21 @@ class King implements Piece {
       Square(x: square.x - 1, y: square.y),
       Square(x: square.x - 1, y: square.y - 1),
     ];
+  }
+
+  @override
+  List<Move> calculatePossibleMoves(BoardInterface board) {
+    final moves = <Move>[];
+    final possibleSquares = allSquaresReachable(board);
     for (final possibleSquare in possibleSquares) {
-      if (board.isSquareInside(possibleSquare)) {continue;}
+      if (!board.isSquareInside(possibleSquare)) {continue;}
+      if (board.isSquareAttacked(
+        square: possibleSquare,
+        color: getOppositeColor(color),
+        isKing: true,
+      )) {
+        continue;
+      }
       simpleMoveSetter(
         currentSquare: possibleSquare,
         moves: moves,
@@ -43,11 +57,17 @@ class King implements Piece {
         board: board,
       );
     }
-    return moves;
+    return moves..sort(moveSorter);
   }
 
   @override
   String toString() {
     return 'K($square, $color)';
   }
+
+  @override
+  List<Object?> get props => [color, square];
+
+  @override
+  bool? get stringify => false;
 }

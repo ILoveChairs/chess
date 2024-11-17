@@ -1,6 +1,9 @@
 
+import 'package:equatable/equatable.dart';
+
+
 /// The dimentions for a board. Attributes should be > 0.
-class BoardDimentions {
+class BoardDimentions extends Equatable {
   /// The dimentions for a board. Attributes should be > 0.
   const BoardDimentions({
     required this.width,
@@ -18,11 +21,14 @@ class BoardDimentions {
   String toString() {
     return 'Dim(width:$width, height:$height)';
   }
+
+  @override
+  List<Object?> get props => [width, height];
 }
 
 
 /// A square is a position (hopefully) inside the board.
-class Square {
+class Square extends Equatable {
   /// A square is a position (hopefully) inside the board.
   const Square({
     required this.x,
@@ -39,11 +45,14 @@ class Square {
   String toString() {
     return 'Sqr(x:$x, y:$y)';
   }
+
+  @override
+  List<Object?> get props => [x, y];
 }
 
 
 /// A move is when a piece moves from A to B.
-class Move {
+class Move extends Equatable {
   /// A move is when a piece moves from A to B.
   const Move({
     required this.destinationSquare,
@@ -59,6 +68,9 @@ class Move {
   String toString() {
     return '$piece$destinationSquare';
   }
+
+  @override
+  List<Object?> get props => [destinationSquare, piece];
 }
 
 
@@ -72,8 +84,14 @@ enum PieceColor {
 }
 
 
+/// Returns the opposite color of the parameter.
+PieceColor getOppositeColor(PieceColor color) {
+  return color == PieceColor.white ? PieceColor.black : PieceColor.white;
+}
+
+
 /// A chess piece.
-abstract interface class Piece {
+abstract interface class Piece extends Equatable {
   /// Current position of the piece.
   abstract final Square square;
 
@@ -106,7 +124,7 @@ abstract interface class Piece {
 /// operate by pieces instead, which should be easier.
 /// 
 /// Should throw error if there is not one king for each color.
-abstract interface class BoardInterface {
+abstract interface class BoardInterface extends Equatable {
   /// List of pieces that the board has.
   abstract final List<Piece?> pieces;
 
@@ -122,8 +140,15 @@ abstract interface class BoardInterface {
   /// else return a piece.
   Piece? getSquareContent(Square square);
 
-  /// Retuns whether a square is inside the board.
+  /// Returns whether a square is inside the board.
   bool isSquareInside(Square square);
+
+  /// Returns whether a square is attacked by any piece of the passed color.
+  bool isSquareAttacked({
+    required Square square,
+    required PieceColor color,
+    bool isKing = false,
+  });
 
   /// Gets all the moves possible for a specific color.
   List<Move> getAllPossibleMoves(PieceColor color);
@@ -159,7 +184,7 @@ abstract interface class PieceTranslator {
 /// 
 /// I did not want to call it AI as it may imply that there is machine learning
 /// involved, which is definitely not the case.
-abstract interface class CPU {
+abstract interface class CPU extends Equatable {
   /// Current board.
   abstract final BoardInterface board;
 

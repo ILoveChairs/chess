@@ -65,7 +65,7 @@ void bishopTest() {
     assert(
       moveListEquals(
         moves,
-        <Move>[],
+        const <Move>[],
       ),
       'Friendly piece did not block bishop',
     );
@@ -89,9 +89,9 @@ void bishopTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: bishop, destinationSquare: Square(x: 2, y: 2)),
-        ],
+        [
+          const Move(piece: bishop, destinationSquare: Square(x: 2, y: 2)),
+        ]..sort(moveSorter),
       ),
       'Enemy piece did not block bishop',
     );
@@ -111,12 +111,12 @@ void knightTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: knight, destinationSquare: Square(x: 4, y: 1)),
-          Move(piece: knight, destinationSquare: Square(x: 4, y: 3)),
-          Move(piece: knight, destinationSquare: Square(x: 1, y: 4)),
-          Move(piece: knight, destinationSquare: Square(x: 3, y: 4)),
-        ],
+        [
+          const Move(piece: knight, destinationSquare: Square(x: 4, y: 1)),
+          const Move(piece: knight, destinationSquare: Square(x: 4, y: 3)),
+          const Move(piece: knight, destinationSquare: Square(x: 1, y: 4)),
+          const Move(piece: knight, destinationSquare: Square(x: 3, y: 4)),
+        ]..sort(moveSorter),
       ),
       'Knight failed to generate correct moves',
     );
@@ -136,9 +136,9 @@ void pawnTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: pawn, destinationSquare: Square(x: 5, y: 6)),
-        ],
+        [
+          const Move(piece: pawn, destinationSquare: Square(x: 5, y: 6)),
+        ]..sort(moveSorter),
       ),
       'Pawn failed to generate correct moves in non-starting square',
     );
@@ -155,10 +155,10 @@ void pawnTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: pawn, destinationSquare: Square(x: 6, y: 3)),
-          Move(piece: pawn, destinationSquare: Square(x: 6, y: 4)),
-        ],
+        [
+          const Move(piece: pawn, destinationSquare: Square(x: 6, y: 3)),
+          const Move(piece: pawn, destinationSquare: Square(x: 6, y: 4)),
+        ]..sort(moveSorter),
       ),
       'White pawn failed to generate correct moves in starting square',
     );
@@ -168,17 +168,17 @@ void pawnTest() {
 
   // Get all possible squares from a starting square from a black pawn
   validTest(() {
-    const pawn = Pawn(square: Square(x: 8, y: 7), color: PieceColor.black);
+    const pawn = Pawn(square: Square(x: 1, y: 7), color: PieceColor.black);
     final board = testBoard.copyWith([pawn]);
 
     final moves = pawn.calculatePossibleMoves(board);
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: pawn, destinationSquare: Square(x: 8, y: 6)),
-          Move(piece: pawn, destinationSquare: Square(x: 8, y: 5)),
-        ],
+        [
+          const Move(piece: pawn, destinationSquare: Square(x: 1, y: 6)),
+          const Move(piece: pawn, destinationSquare: Square(x: 1, y: 5)),
+        ]..sort(moveSorter),
       ),
       'Black pawn failed to generate correct moves in starting square',
     );
@@ -196,9 +196,9 @@ void pawnTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: pawn, destinationSquare: Square(x: 6, y: 3)),
-        ],
+        [
+          const Move(piece: pawn, destinationSquare: Square(x: 6, y: 3)),
+        ]..sort(moveSorter),
       ),
       'Pawn failed to be blocked by enemy pawn',
     );
@@ -217,11 +217,11 @@ void pawnTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: pawn, destinationSquare: Square(x: 2, y: 4)),
-          Move(piece: pawn, destinationSquare: Square(x: 3, y: 4)),
-          Move(piece: pawn, destinationSquare: Square(x: 4, y: 4)),
-        ],
+        [
+          const Move(piece: pawn, destinationSquare: Square(x: 2, y: 4)),
+          const Move(piece: pawn, destinationSquare: Square(x: 3, y: 4)),
+          const Move(piece: pawn, destinationSquare: Square(x: 4, y: 4)),
+        ]..sort(moveSorter),
       ),
       'Pawn failed to generate attacking moves',
     );
@@ -241,33 +241,33 @@ void queenTest() {
     assert(
       moveListEquals(
         moves,
-        const [
+        [
           // bishop
-          Move(piece: queen, destinationSquare: Square(x: 1, y: 1)),
-          Move(piece: queen, destinationSquare: Square(x: 3, y: 3)),
-          Move(piece: queen, destinationSquare: Square(x: 4, y: 4)),
-          Move(piece: queen, destinationSquare: Square(x: 5, y: 5)),
-          Move(piece: queen, destinationSquare: Square(x: 6, y: 6)),
-          Move(piece: queen, destinationSquare: Square(x: 7, y: 7)),
-          Move(piece: queen, destinationSquare: Square(x: 8, y: 8)),
-          Move(piece: queen, destinationSquare: Square(x: 1, y: 3)),
-          Move(piece: queen, destinationSquare: Square(x: 3, y: 1)),
+          const Move(piece: queen, destinationSquare: Square(x: 1, y: 1)),
+          const Move(piece: queen, destinationSquare: Square(x: 3, y: 3)),
+          const Move(piece: queen, destinationSquare: Square(x: 4, y: 4)),
+          const Move(piece: queen, destinationSquare: Square(x: 5, y: 5)),
+          const Move(piece: queen, destinationSquare: Square(x: 6, y: 6)),
+          const Move(piece: queen, destinationSquare: Square(x: 7, y: 7)),
+          const Move(piece: queen, destinationSquare: Square(x: 8, y: 8)),
+          const Move(piece: queen, destinationSquare: Square(x: 1, y: 3)),
+          const Move(piece: queen, destinationSquare: Square(x: 3, y: 1)),
           // rook
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 1)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 3)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 4)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 5)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 6)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 7)),
-          Move(piece: queen, destinationSquare: Square(x: 2, y: 8)),
-          Move(piece: queen, destinationSquare: Square(x: 1, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 3, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 4, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 5, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 6, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 7, y: 2)),
-          Move(piece: queen, destinationSquare: Square(x: 8, y: 2)),
-        ],
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 1)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 3)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 4)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 5)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 6)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 7)),
+          const Move(piece: queen, destinationSquare: Square(x: 2, y: 8)),
+          const Move(piece: queen, destinationSquare: Square(x: 1, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 3, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 4, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 5, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 6, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 7, y: 2)),
+          const Move(piece: queen, destinationSquare: Square(x: 8, y: 2)),
+        ]..sort(moveSorter),
       ),
       'Queen failed to generate correct moves',
     );
@@ -286,22 +286,22 @@ void rookTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 1)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 3)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 4)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 5)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 6)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 7)),
-          Move(piece: rook, destinationSquare: Square(x: 2, y: 8)),
-          Move(piece: rook, destinationSquare: Square(x: 1, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 3, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 4, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 5, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 6, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 7, y: 2)),
-          Move(piece: rook, destinationSquare: Square(x: 8, y: 2)),
-        ],
+        [
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 1)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 3)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 4)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 5)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 6)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 7)),
+          const Move(piece: rook, destinationSquare: Square(x: 2, y: 8)),
+          const Move(piece: rook, destinationSquare: Square(x: 1, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 3, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 4, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 5, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 6, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 7, y: 2)),
+          const Move(piece: rook, destinationSquare: Square(x: 8, y: 2)),
+        ]..sort(moveSorter),
       ),
       'Rook failed to generate correct moves',
     );
@@ -327,11 +327,11 @@ void kingTest() {
     assert(
       moveListEquals(
         moves,
-        const [
-          Move(piece: king, destinationSquare: Square(x: 1, y: 2)),
-          Move(piece: king, destinationSquare: Square(x: 2, y: 2)),
-          Move(piece: king, destinationSquare: Square(x: 2, y: 1)),
-        ],
+        [
+          const Move(piece: king, destinationSquare: Square(x: 1, y: 2)),
+          const Move(piece: king, destinationSquare: Square(x: 2, y: 2)),
+          const Move(piece: king, destinationSquare: Square(x: 2, y: 1)),
+        ]..sort(moveSorter),
       ),
       'King failed to generate correct moves',
     );
@@ -342,16 +342,16 @@ void kingTest() {
   // Check if can't move to attacked square
   // Gets all king's possible moves attacked by different pieces
   validTest(() {
-    const king = King(square: Square(x: 5, y: 5), color: PieceColor.white);
+    const king = King(square: Square(x: 5, y: 5), color: PieceColor.black);
     const board = Board(
       pieces: [
         king,
-        King(square: Square(x: 3, y: 3), color: PieceColor.black),
-        Queen(square: Square(x: 1, y: 3), color: PieceColor.black),
-        Rook(square: Square(x: 6, y: 1), color: PieceColor.black),
-        Bishop(square: Square(x: 3, y: 2), color: PieceColor.black),
-        Pawn(square: Square(x: 3, y: 4), color: PieceColor.black),
-        Knight(square: Square(x: 6, y: 8), color: PieceColor.black),
+        King(square: Square(x: 3, y: 3), color: PieceColor.white),
+        Queen(square: Square(x: 1, y: 3), color: PieceColor.white),
+        Rook(square: Square(x: 6, y: 1), color: PieceColor.white),
+        Bishop(square: Square(x: 3, y: 2), color: PieceColor.white),
+        Pawn(square: Square(x: 3, y: 4), color: PieceColor.white),
+        Knight(square: Square(x: 6, y: 8), color: PieceColor.white),
       ],
       dimentions: BoardDimentions(width: 8, height: 8),
     );
@@ -360,7 +360,7 @@ void kingTest() {
     assert(
       moveListEquals(
         moves,
-        <Move>[],
+        const <Move>[],
       ),
       'King could move to attacked square',
     );
