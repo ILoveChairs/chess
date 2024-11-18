@@ -139,6 +139,7 @@ class Board implements BoardInterface {
       move.destinationSquare,
       move.piece.color,
     );
+    print(newPiece);
     newPieces
       ..remove(move.piece)
       ..add(newPiece);
@@ -193,10 +194,10 @@ class Board implements BoardInterface {
     final output = <List<String>>[];
 
     // populate with ' '
-    for (var i = 0; i < dimentions.width; i++) {
+    for (var x = 0; x < dimentions.width; x++) {
       output.add([]);
-      for (var j = 0; j < dimentions.height; j++) {
-        output[i].add(' ');
+      for (var y = 0; y < dimentions.height; y++) {
+        output[x].add(' ');
       }
     }
 
@@ -204,7 +205,7 @@ class Board implements BoardInterface {
 
     // populate squares with pieces
     for (final piece in pieces) {
-      output[piece.square.x + 1][piece.square.y + 1] = 
+      output[piece.square.x - 1][piece.square.y - 1] = 
         translator.pieceToString(piece);
     }
 

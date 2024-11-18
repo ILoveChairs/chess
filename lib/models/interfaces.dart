@@ -66,7 +66,7 @@ class Move extends Equatable {
 
   @override
   String toString() {
-    return '$piece$destinationSquare';
+    return 'Move($piece, $destinationSquare)';
   }
 
   @override

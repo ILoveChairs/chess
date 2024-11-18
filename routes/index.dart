@@ -52,9 +52,9 @@ Future<Response> onRequest(RequestContext context) async {
     }
     final board = Board(
       pieces: pieces,
-      dimentions: BoardDimentions(
-        width: requestBoard.length,
-        height: requestBoard.length,
+      dimentions: const BoardDimentions(
+        width: 8,
+        height: 8,
       ),
     );
     try {
@@ -63,7 +63,9 @@ Future<Response> onRequest(RequestContext context) async {
       for (var x = 0; x < generatedBoard.dimentions.width; x++) {
         responseBoard.add([]);
         for (var y = 0; y < generatedBoard.dimentions.height; y++) {
-          final piece = board.getSquareContent(Square(x: x, y: y));
+          final piece = generatedBoard.getSquareContent(
+            Square(x: x + 1, y: y + 1),
+          );
           if (piece == null) {
             responseBoard[x].add(' ');
           } else {
