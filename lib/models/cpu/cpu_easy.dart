@@ -76,7 +76,7 @@ class CpuEasy implements CPU {
 /// 4. 6,25%
 /// 5. 6,25%
 Move getBestMoveEasy(List<Move> moves, double randomNum) {
-  if (moves.isEmpty) { throw Error(); }
+  if (moves.isEmpty) { throw Exception('getBestMoveEasy empty'); }
   if (moves.length == 1) { return moves.first; }
   var chance = 1.0;
   var sum = 0.0;

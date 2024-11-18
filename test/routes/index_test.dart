@@ -6,18 +6,18 @@ import 'package:test/test.dart';
 
 import '../../routes/index.dart' as route;
 
-class _MockRequestContext extends Mock implements RequestContext {}
+class _MockRequestContext extends Mock implements RequestContext {
+  @override
+  Request get request => Request(HttpMethod.post.value, request.uri);
+}
 
-void main() {
-  group('GET /', () {
-    test('responds with a 200 and "Welcome to Dart Frog!".', () {
+void main() async {
+  group('POST /', () async {
+    test('responds with a 200.', () async {
       final context = _MockRequestContext();
-      final response = route.onRequest(context);
-      expect(response.statusCode, equals(HttpStatus.ok));
-      expect(
-        response.body(),
-        completion(equals('Welcome to Dart Frog!')),
-      );
+      final response = await route.onRequest(context);
+      final statusCode = response.statusCode;
+      expect(statusCode, equals(HttpStatus.ok));
     });
   });
 }
