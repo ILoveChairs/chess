@@ -131,15 +131,27 @@ class Board implements BoardInterface {
   Board applyMove(Move move) {
     final newPieces = List<Piece>.from(pieces);
     final destinationPiece = getSquareContent(move.destinationSquare);
+    late final Piece newPiece;
     if (destinationPiece != null) {
       newPieces.remove(destinationPiece);
     }
-    final newPiece = PieceFactory.fabricateByPiece(
-      move.piece.runtimeType,
-      move.destinationSquare,
-      move.piece.color,
-    );
-    print(newPiece);
+    if (
+      move.piece.runtimeType is Pawn &&
+      (
+        (move.piece.color == PieceColor.white &&
+        move.destinationSquare.y == 8) ||
+        (move.piece.color == PieceColor.black &&
+        move.destinationSquare.y == 1)
+      )
+    ) {
+      newPiece = Queen(square: move.destinationSquare, color: move.piece.color);
+    } else {
+      newPiece = PieceFactory.fabricateByPiece(
+        move.piece.runtimeType,
+        move.destinationSquare,
+        move.piece.color,
+      );
+    }
     newPieces
       ..remove(move.piece)
       ..add(newPiece);
