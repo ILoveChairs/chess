@@ -18,7 +18,7 @@ class Board implements BoardInterface {
   @override
   final BoardDimentions dimentions;
 
-  ///
+  @override
   Iterable<Piece> getPiecesOfColor(PieceColor color) {
     return pieces.where((piece) => piece.color == color);
   }

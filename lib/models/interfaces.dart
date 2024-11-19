@@ -126,7 +126,7 @@ abstract interface class Piece extends Equatable {
 /// Should throw error if there is not one king for each color.
 abstract interface class BoardInterface extends Equatable {
   /// List of pieces that the board has.
-  abstract final List<Piece?> pieces;
+  abstract final List<Piece> pieces;
 
   /// Dimentions of board.
   /// Default should be 8x8.
@@ -149,6 +149,9 @@ abstract interface class BoardInterface extends Equatable {
     required PieceColor color,
     bool isKing = false,
   });
+
+  /// 
+  Iterable<Piece> getPiecesOfColor(PieceColor color);
 
   /// Applies a move and returns a new board.
   BoardInterface applyMove(Move move);

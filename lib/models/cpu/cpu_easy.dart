@@ -1,6 +1,6 @@
 
-import 'dart:math';
-
+import 'dart:math' show Random;
+import 'package:chess/models/cpu/advantage_calc/advantage_calc.dart';
 import 'package:chess/models/interfaces.dart';
 import 'package:chess/models/models.dart';
 
@@ -22,33 +22,13 @@ class CpuEasy implements CPU {
   BoardInterface calculateTurn() {
     final bestMoves = getBestMoves();
     final randomNum = Random().nextDouble();
-    final chosenMove = getBestMoveEasy(bestMoves, randomNum);
+    final chosenMove = _chooseBestMove(bestMoves, randomNum);
     return board.applyMove(chosenMove);
   }
 
   @override
   List<Move> getBestMoves() {
-    // Advantage is positive for white and negative for black
-    var advantage = 0;
-    final selected = <Move>[];
-    final moves = board.getAllPossibleMoves(color);
-    if (board.isChecked(color)) {
-      for (final move in moves) {
-        if (
-          !board.applyMove(move).isChecked(color)
-        ) {
-          selected.add(move);
-        }
-      }
-    } else {
-      for (final move in moves) {
-        if (advantage.isEven) {
-          selected.add(move);
-        }
-        advantage += 1;
-      }
-    }
-    return selected;
+    return _getBestMoves(board, color);
   }
 
 
@@ -75,8 +55,8 @@ class CpuEasy implements CPU {
 /// 3. 12,5%
 /// 4. 6,25%
 /// 5. 6,25%
-Move getBestMoveEasy(List<Move> moves, double randomNum) {
-  if (moves.isEmpty) { throw Exception('getBestMoveEasy empty'); }
+Move _chooseBestMove(List<Move> moves, double randomNum) {
+  if (moves.isEmpty) { throw Exception('_chooseBestMove empty'); }
   if (moves.length == 1) { return moves.first; }
   var chance = 1.0;
   var sum = 0.0;
@@ -95,4 +75,43 @@ Move getBestMoveEasy(List<Move> moves, double randomNum) {
   }
   // In case of failure return first.
   return moves.first;
+}
+
+
+/// 
+List<Move> _getBestMoves(BoardInterface board, PieceColor color) {
+  final moves = board.getAllPossibleMoves(color);
+  late final  List<Move> selected;
+  // If checked oblige to move the king
+  if (board.isChecked(color)) {
+    if (board.isCheckmated(color)) throw Exception('Checkmated');
+    selected = [];
+    for (final move in moves) {
+      if (
+        !board.applyMove(move).isChecked(color)
+      ) {
+        selected.add(move);
+      }
+    }
+  // If not checked
+  } else {
+    // ! Unoptimized, calculates advantages more times that necessary
+    if (color == PieceColor.white) {
+      selected = List<Move>.from(moves)
+        ..sort((move1, move2) =>
+          calculateAllAdvantages(board.applyMove(move1)).round().compareTo(
+            calculateAllAdvantages(board.applyMove(move2)).round(),
+          ),
+        );
+    } else {
+      // reversed
+      selected = List<Move>.from(moves)
+        ..sort((move1, move2) =>
+          calculateAllAdvantages(board.applyMove(move2)).round().compareTo(
+            calculateAllAdvantages(board.applyMove(move1)).round(),
+          ),
+        );
+    }
+  }
+  return selected;
 }
