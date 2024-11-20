@@ -1,5 +1,5 @@
 name: chess
-description: A new Dart Frog application
+description: My very own chess API
 version: 1.0.0+1
 publish_to: none
 
@@ -7,12 +7,12 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
+  collection: ^1.19.1
   dart_frog: ^1.1.0
   equatable: ^2.0.0
   shelf_cors_headers: ^0.1.5
 
 dev_dependencies:
-  collection: ^1.19.1
   mocktail: ^1.0.3
   test: ^1.25.5
   very_good_analysis: ^5.1.0
