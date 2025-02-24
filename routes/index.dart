@@ -77,11 +77,11 @@ Future<Response> onRequest(RequestContext context) async {
       }
     } catch (e) {
       return Response.json(
-      statusCode: 501,
-      body: {
-        'error': e.toString(),
-      },
-    );
+        statusCode: 501,
+        body: {
+          'error': e.toString(),
+        },
+      );
     }
   } catch (e) {
     return Response.json(

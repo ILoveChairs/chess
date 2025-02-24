@@ -77,7 +77,7 @@ class Pawn extends Equatable implements Piece {
     return moves..sort(moveSorter);
   }
 
-  /// 
+  /// Returns squares diagonally in front of the pawn
   List<Square> getDiagoinals() {
     final yMod = color == PieceColor.white ? 1 : -1;
     return [
@@ -96,15 +96,16 @@ class Pawn extends Equatable implements Piece {
 }
 
 
-/// 
+/// Diagonal piece adder
 void addDiagonalsIfEnemyPiece({
   required Square square,
   required List<Move> moves,
   required Piece piece,
   required BoardInterface board,
 }) {
-  final square1 = Square(x: square.x - 1, y: square.y);
-  final square2 = Square(x: square.x + 1, y: square.y);
+  final diagonals = piece.getDiagoinals();
+  final square1 = diagonals[0];
+  final square2 = diagonals[1];
   final square1Content = board.getSquareContent(square1);
   final square2Content = board.getSquareContent(square2);
   if (square1Content != null && square1Content.color != piece.color) {
