@@ -39,8 +39,6 @@ class Pawn extends Equatable implements Piece {
             moves.add(Move(destinationSquare: square2, piece: this));
           }
         }
-      } else if (square1Content.color != color) {
-        moves.add(Move(destinationSquare: square1, piece: this));
       }
       // Diagonal if enemy piece
       addDiagonalsIfEnemyPiece(
@@ -63,12 +61,9 @@ class Pawn extends Equatable implements Piece {
             moves.add(Move(destinationSquare: square2, piece: this));
           }
         }
-      } else if (square1Content.color != color) {
-        moves.add(Move(destinationSquare: square1, piece: this));
       }
       // Diagonal if enemy piece
       addDiagonalsIfEnemyPiece(
-        square: Square(x: square.x, y: square.y - 1),
         moves: moves,
         piece: this,
         board: board,
@@ -98,9 +93,8 @@ class Pawn extends Equatable implements Piece {
 
 /// Diagonal piece adder
 void addDiagonalsIfEnemyPiece({
-  required Square square,
   required List<Move> moves,
-  required Piece piece,
+  required Pawn piece,
   required BoardInterface board,
 }) {
   final diagonals = piece.getDiagoinals();
