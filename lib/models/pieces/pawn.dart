@@ -42,7 +42,6 @@ class Pawn extends Equatable implements Piece {
       }
       // Diagonal if enemy piece
       addDiagonalsIfEnemyPiece(
-        square: Square(x: square.x, y: square.y + 1),
         moves: moves,
         piece: this,
         board: board,
